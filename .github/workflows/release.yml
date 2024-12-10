@@ -11,10 +11,17 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
+      # Checkout the repository
+      - uses: "actions/checkout@v4"
+        with:
+          fetch-depth: 0
+          fetch-tags: true
       # Setup Node.js
       - uses: "actions/setup-node@v4"
         with:
-          node-version: "latest"
+          node-version: 20
+          cache: "npm"
+          cache-dependency-path: "package-lock.json"
       # Install dependencies (including devDependencies)
       - run: "npm install"
       # Minify config.js
