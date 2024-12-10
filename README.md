@@ -114,7 +114,7 @@ By using `$default`, you can easily create a lot of config items of the same typ
 }
 ```
 
-If you'd like to modify the default value, you may provide `$default` in your config description to override the above default values. e.g.:
+If you'd like to modify the default value, you may provide `$default` in your config description to override the above default values. Note that specifying `prop.type` doesn't work here, and subfolders will **inherit** `$default`. e.g.:
 
 ```javascript
 const configDesc = {

@@ -113,7 +113,7 @@ console.log(GM_config.version); // *输出版本*
 }
 ```
 
-若你想要修改默认值，你可以在配置描述中提供 `$default` 从而覆盖上述默认值。例如：
+若你想要修改默认值，你可以在配置描述中提供 `$default` 从而覆盖上述默认值。需要注意的是：在这里指定 `prop.type` 并不会生效；子文件夹会 **继承** `$default` 属性。例如：
 
 ```javascript
 const configDesc = {
