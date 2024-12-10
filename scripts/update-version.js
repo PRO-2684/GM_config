@@ -6,16 +6,15 @@
 const fs = require("fs");
 const { exec } = require("child_process");
 const package = require("../package.json");
-const path = "config.js";
-
+const paths = ["config.js", "test_config.user.js"];
 const version = package.version;
-const data = fs.readFileSync(path, "utf8");
-const result = replace(data, version);
-fs.writeFileSync(path, result, "utf8");
-console.log(`Updated version to ${version}`);
 
-console.log(`Adding ${path} to git...`);
-exec(`git add ${path}`, (err, stdout, stderr) => {
+for (const path of paths) {
+    replace(path, version);
+}
+console.log(`Updated version to ${version}`);
+console.log(`Adding to git...`);
+exec(`git add ${paths.join(" ")}`, (err, stdout, stderr) => {
     if (err) {
         console.error(err);
         return;
@@ -24,8 +23,10 @@ exec(`git add ${path}`, (err, stdout, stderr) => {
     console.log(`stderr: ${stderr}`);
 });
 
-function replace(code, version) {
+function replace(path, version) {
+    const code = fs.readFileSync(path, "utf8");
     // Replace: `@version      1.2.0` & `return "1.2.0";`
-    return code.replace(/@version(\s+)\d+\.\d+\.\d+/, `@version$1${version}`)
+    const replaced = code.replace(/@version(\s+)\d+\.\d+\.\d+/, `@version$1${version}`)
         .replace(/return "\d+\.\d+\.\d+";/, `return "${version}";`);
+    fs.writeFileSync(path, replaced, "utf8");
 }
