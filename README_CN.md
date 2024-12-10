@@ -19,20 +19,38 @@
     - 自定义菜单项展现方式 (`prop.formatter`)
 - 自动删除与默认值相同的用户配置，降低存储开销
 
-## 🤔 权限
+## 🤔 先决条件
 
-这个库需要以下权限:
+这个库需要以下权限：
+
+- `GM_setValue`: 保存配置
+- `GM_getValue`: 获取配置
+- `GM_deleteValue`: 自动删除配置 (可选，给予后库会自动删除与默认值相同的用户配置)
+- `GM_registerMenuCommand`: 注册菜单
+- `GM_unregisterMenuCommand`: 更新菜单
+- `GM_addValueChangeListener`: 监听配置变化
+
+你可以从以下几种方法中选择一种，以将此库包含在你的脚本中：
+
+| Source         | Original | Minified |
+| -------------- | -------- | -------- |
+| [GitHub Release](https://github.com/PRO-2684/GM_config/releases) | 🟢      | 🟢       |
+| [GitHub Raw](https://github.com/PRO-2684/GM_config/blob/main/config.js)     | 🟢      | 🔴       |
+| [GreasyFork](https://greasyfork.org/scripts/470224)     | 🔴      | <span title="每天检查一次更新">🟡*</span>      |
+
+GitHub Release (Minified) 是最推荐的源。以此为例，你可以像这样将此库包含在你的脚本中：
 
 ```javascript
-// @grant        GM_setValue // 保存配置
-// @grant        GM_getValue // 获取配置
-// @grant        GM_deleteValue // 自动删除配置 (可选，给予后库会自动删除与默认值相同的用户配置)
-// @grant        GM_registerMenuCommand // 注册菜单
-// @grant        GM_unregisterMenuCommand // 更新菜单
-// @grant        GM_addValueChangeListener // 监听配置变化
+// @grant        GM_setValue
+// @grant        GM_getValue
+// @grant        GM_deleteValue
+// @grant        GM_registerMenuCommand
+// @grant        GM_unregisterMenuCommand
+// @grant        GM_addValueChangeListener
+// @require      https://github.com/PRO-2684/GM_config/releases/download/<version>/config.min.js
 ```
 
-若你复制粘贴了上述代码，记得 **删去注释**，否则可能报错。若有，你需要删去 `@grant none`。
+其中 `<version>` 是你想要使用的版本 (例如 `v1.2.0`)。若只作测试用，你也可以 `@require` [最新版](https://github.com/PRO-2684/GM_config/releases/latest/download/config.min.js)。
 
 ## 🚀 快速开始
 

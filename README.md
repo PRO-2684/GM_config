@@ -19,20 +19,38 @@ Simple config lib for Tampermonkey scripts. ([Greasy Fork](https://greasyfork.or
     - Customizable menu command display (`prop.formatter`)
 - Automatically delete user config that is equal to default value, in order to save storage space
 
-## 🤔 Permission
+## 🤔 Pre-requisites
 
 This library needs the following permissions to work:
 
+- `GM_setValue`: Save your config
+- `GM_getValue`: Get your config
+- `GM_deleteValue`: Automatically delete your config (Optional. If granted, this lib will delete user config that is equal to default value)
+- `GM_registerMenuCommand`: Register menu
+- `GM_unregisterMenuCommand`: Update menu
+- `GM_addValueChangeListener`: Listen for config changes
+
+To include this library in your script, you can choose one of the following methods:
+
+| Source         | Original | Minified |
+| -------------- | -------- | -------- |
+| [GitHub Release](https://github.com/PRO-2684/GM_config/releases) | 🟢      | 🟢       |
+| [GitHub Raw](https://github.com/PRO-2684/GM_config/blob/main/config.js)     | 🟢      | 🔴       |
+| [GreasyFork](https://greasyfork.org/scripts/470224)     | 🔴      | <span title="Update check once a day">🟡*</span>      |
+
+GitHub Release (Minified) is the recommended source. Take that for example, you can include it in your script like this:
+
 ```javascript
-// @grant        GM_setValue // Save your config
-// @grant        GM_getValue // Get your config
-// @grant        GM_deleteValue // Automatically delete your config (Optional. If granted, this lib will delete user config that is equal to default value)
-// @grant        GM_registerMenuCommand // Register menu
-// @grant        GM_unregisterMenuCommand // Update menu
-// @grant        GM_addValueChangeListener // Listen for config changes
+// @grant        GM_setValue
+// @grant        GM_getValue
+// @grant        GM_deleteValue
+// @grant        GM_registerMenuCommand
+// @grant        GM_unregisterMenuCommand
+// @grant        GM_addValueChangeListener
+// @require      https://github.com/PRO-2684/GM_config/releases/download/<version>/config.min.js
 ```
 
-**Delete the comment** if you copied and pasted the code, or there might be errors. You may want to delete `@grant none` (if present).
+Where `<version>` is the version you want to include (like `v1.2.0`). If only for testing, you can `@require` the [latest version](https://github.com/PRO-2684/GM_config/releases/latest/download/config.min.js).
 
 ## 🚀 Quick start
 
