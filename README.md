@@ -279,6 +279,12 @@ Built-in formatters:
 - `name_only`: Only show the name of the config item (Used internally by `action` type)
 - `folder`: Wrap the name with `options.folderDisplay.prefix` and `options.folderDisplay.suffix`. (Used internally by `folder` type)
 
+#### `prop.hidden`
+
+> `boolean`
+
+Whether to hide the config item. If set to `true`, the config item will not be displayed in the menu, but you can still access or modify it using `config.get` and `config.set`.
+
 #### Other Tampermonkey provided properties
 
 Supports `prop.accessKey`, `prop.autoClose`, `prop.title` (Require TM >=4.20.0). If a function is provided, it will be called with argument `prop`, `name` and `value`, and the returned string will be passed to Tampermonkey. See [Tampermonkey docs](https://www.tampermonkey.net/documentation.php#api:GM_registerMenuCommand) for details.

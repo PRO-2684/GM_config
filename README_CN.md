@@ -278,6 +278,12 @@ const configDesc = {
 - `name_only`: 仅显示名称，不显示值（内部用于 `action` 类型）
 - `folder`: 使用 `options.folderDisplay.prefix` 和 `options.folderDisplay.suffix` 包裹名称（内部用于 `folder` 类型）
 
+#### `prop.hidden`
+
+> `boolean`
+
+是否隐藏此配置项。若设为 `true`，则不会在菜单中显示此配置项，但是你仍然可以通过 `config.get` 和 `config.set` 来访问或修改它。
+
 #### 其它 Tampermonkey 提供的属性
 
 支持 `prop.accessKey`, `prop.autoClose`, `prop.title` (要求 TM >=4.20.0)。如果提供的是一个函数，那么它将被调用，传入参数为 `name` 和 `value`，返回的字符串将被传递给 Tampermonkey。详细信息请参考 [Tampermonkey 文档](https://www.tampermonkey.net/documentation.php#api:GM_registerMenuCommand)。

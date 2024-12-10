@@ -513,6 +513,10 @@ class GM_config extends EventTarget {
      */
     #registerItem(prop) {
         const desc = this.#getProp(prop);
+        if (desc.hidden) {
+            this.#log(`○ Skipped registering menu command: prop="${prop}" (hidden)`);
+            return;
+        }
         const { name, value, input, processor, formatter, accessKey, autoClose, title } = desc;
         const orig = this.#get(prop, value);
         const inputFunc = typeof input === "function" ? input : this.#builtinInputs[input];

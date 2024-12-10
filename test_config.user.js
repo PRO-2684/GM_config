@@ -117,6 +117,11 @@
                 return input;
             }
         },
+        secret: {
+            name: "Secret",
+            value: "123456",
+            hidden: true // Not displayed in the menu command
+        }
     }
     const config = new GM_config(configDesc, { immediate: false, debug: true }); // Register menu commands
     function someAction() {
