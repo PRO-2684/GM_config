@@ -1,0 +1,28 @@
+{
+  "name": "gm_config",
+  "version": "1.2.0",
+  "description": "Simple Tampermonkey script config library",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "version": "node ./scripts/update_version.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PRO-2684/GM_config.git"
+  },
+  "keywords": [
+    "tampermonkey",
+    "library",
+    "configuration"
+  ],
+  "author": "PRO-2684",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/PRO-2684/GM_config/issues"
+  },
+  "homepage": "https://github.com/PRO-2684/GM_config#readme",
+  "devDependencies": {
+    "terser": "^5.37.0"
+  }
+}

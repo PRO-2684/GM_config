@@ -1,0 +1,29 @@
+name: "tagged-release"
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  tagged-release:
+    name: "Tagged Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      # Setup Node.js
+      - uses: "actions/setup-node@v4"
+        with:
+          node-version: "latest"
+      # Install dependencies (including devDependencies)
+      - run: "npm install"
+      # Minify config.js
+      - run: "node ./scripts/minify.js"
+      # Create a release
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            config.js
+            config.min.js
