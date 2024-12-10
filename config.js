@@ -397,6 +397,33 @@ class GM_config extends EventTarget {
         }
     }
     /**
+     * Go to the parent folder
+     * @returns {string | null} The name of the parent folder, or `null` if at root
+     */
+    up() {
+        const value = this.#currentPath.pop();
+        this.#log(`⬆️ Went up to ${GM_config.#listToDotted(this.#currentPath) || "#root"}`);
+        this.#register();
+        return value ?? null;
+    }
+    /**
+     * Go to a subfolder
+     * @param {string} name The name of the subfolder
+     * @returns {boolean} Whether the operation is successful
+     */
+    down(name) {
+        // Check if the property exists and is a folder
+        const currentItems = this.#currentItems;
+        if (!(name in currentItems && currentItems[name].type === "folder")) {
+            this.#log(`❌ Cannot go down to ${name} - not a folder`);
+            return false;
+        }
+        this.#currentPath.push(name);
+        this.#log(`⬇️ Went down to ${GM_config.#listToDotted(this.#currentPath)}`);
+        this.#register();
+        return true;
+    }
+    /**
      * Get the description of a property
      * @param {string|string[]} path The path to the property, either a dotted string or a list
      * @returns {Object|undefined} The description of the property, or `undefined` if not found
@@ -449,33 +476,6 @@ class GM_config extends EventTarget {
             detail: detail
         });
         return this.dispatchEvent(event);
-    }
-    /**
-     * Go to the parent folder
-     * @returns {string | null} The name of the parent folder, or `null` if at root
-     */
-    up() {
-        const value = this.#currentPath.pop();
-        this.#log(`⬆️ Went up to ${GM_config.#listToDotted(this.#currentPath) || "#root"}`);
-        this.#register();
-        return value ?? null;
-    }
-    /**
-     * Go to a subfolder
-     * @param {string} name The name of the subfolder
-     * @returns {boolean} Whether the operation is successful
-     */
-    down(name) {
-        // Check if the property exists and is a folder
-        const currentItems = this.#currentItems;
-        if (!(name in currentItems && currentItems[name].type === "folder")) {
-            this.#log(`❌ Cannot go down to ${name} - not a folder`);
-            return false;
-        }
-        this.#currentPath.push(name);
-        this.#log(`⬇️ Went down to ${GM_config.#listToDotted(this.#currentPath)}`);
-        this.#register();
-        return true;
     }
     /**
      * Register menu items at the current path
