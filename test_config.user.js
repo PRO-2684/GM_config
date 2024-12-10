@@ -13,7 +13,7 @@
 // @grant        GM_unregisterMenuCommand
 // @grant        GM_addValueChangeListener
 // @grant        unsafeWindow
-// @require      https://update.greasyfork.org/scripts/470224/1499741/Tampermonkey%20Config.js
+// @require      https://github.com/PRO-2684/GM_config/releases/latest/download/config.min.js
 // @license      gpl-3.0
 // ==/UserScript==
 
