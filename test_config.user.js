@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Test Config
 // @namespace    http://tampermonkey.net/
-// @version      1.2.0
+// @version      1.2.1
 // @description  This is an example to demostrate the usage of [GM_config](greasyfork.org/scripts/470224)
 // @author       PRO
 // @match        https://greasyfork.org/*
