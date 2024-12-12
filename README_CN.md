@@ -173,12 +173,12 @@ const configDesc = {
 
 配置项的类型，用于快速设置常见的属性集。当前支持的类型有：
 
-- `str`：字符串
-- `bool`：布尔值
-- `int`：整数
+- `str`：字符串，默认为 `""`
+- `bool`：布尔值，默认为 `false`
+- `int`：整数，默认为 `0`
     - 若指定 `prop.min`，则检查值是否大于等于 `prop.min`
     - 若指定 `prop.max`，则检查值是否小于等于 `prop.max`
-- `float`：浮点数
+- `float`：浮点数，默认为 `0.0`
     - 若指定 `prop.min`，则检查值是否大于等于 `prop.min`
     - 若指定 `prop.max`，则检查值是否小于等于 `prop.max`
 - `enum`：枚举

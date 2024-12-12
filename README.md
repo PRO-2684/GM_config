@@ -174,12 +174,12 @@ const configDesc = {
 
 The type of the config item, used for quickly setting up common properties. Currently supported types are:
 
-- `str`: String
-- `bool`: Boolean
-- `int`: Integer
+- `str`: String, defaulting to `""`
+- `bool`: Boolean, defaulting to `false`
+- `int`: Integer, defaulting to `0`
     - If `prop.min` is provided, it will check if the value is greater than or equal to it
     - If `prop.max` is provided, it will check if the value is less than or equal to it
-- `float`: Float
+- `float`: Float, defaulting to `0.0`
     - If `prop.min` is provided, it will check if the value is greater than or equal to it
     - If `prop.max` is provided, it will check if the value is less than or equal to it
 - `enum`: Enumerate
