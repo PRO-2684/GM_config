@@ -20,6 +20,12 @@
     - 自定义菜单项展现方式 (`prop.formatter`)
 - 自动删除与默认值相同的用户配置，降低存储开销
 
+<details><summary>🖼️ 示例截图</summary>
+
+![test_config](images/test_config.jpg)
+
+</details>
+
 ## 🤔 先决条件
 
 这个库需要以下权限：
@@ -276,7 +282,7 @@ const configDesc = {
 - `normal`：`name: value` 的形式
 - `boolean`：针对布尔值的展现方式。`true` 显示为 `name: ✔`，`false` 显示为 `name: ✘`
 - `name_only`: 仅显示名称，不显示值（内部用于 `action` 类型）
-- `folder`: 使用 `options.folderDisplay.prefix` 和 `options.folderDisplay.suffix` 包裹名称（内部用于 `folder` 类型）
+- `folder`: 使用 `prop.folderDisplay.prefix` 和 `prop.folderDisplay.suffix` 包裹名称（内部用于 `folder` 类型）
 
 #### `prop.hidden`
 

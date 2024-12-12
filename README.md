@@ -20,6 +20,12 @@ Simple config lib for Tampermonkey scripts. ([Greasy Fork](https://greasyfork.or
     - Customizable menu command display (`prop.formatter`)
 - Automatically delete user config that is equal to default value, in order to save storage space
 
+<details><summary>🖼️ Example Screenshot</summary>
+
+![test_config](images/test_config.jpg)
+
+</details>
+
 ## 🤔 Pre-requisites
 
 This library needs the following permissions to work:
@@ -277,7 +283,7 @@ Built-in formatters:
 - `normal`: Display in the format of `name: value`
 - `boolean`: Display method aimed for boolean values. `true` will be displayed as `name: ✔`, `false` will be displayed as `name: ✘`.
 - `name_only`: Only show the name of the config item (Used internally by `action` type)
-- `folder`: Wrap the name with `options.folderDisplay.prefix` and `options.folderDisplay.suffix`. (Used internally by `folder` type)
+- `folder`: Wrap the name with `prop.folderDisplay.prefix` and `prop.folderDisplay.suffix`. (Used internally by `folder` type)
 
 #### `prop.hidden`
 
