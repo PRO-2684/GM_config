@@ -5,7 +5,7 @@
   "main": "config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "version": "node ./scripts/update_version.js"
+    "version": "node ./scripts/update-version.js"
   },
   "repository": {
     "type": "git",
