@@ -182,6 +182,11 @@ The type of the config item, used for quickly setting up common properties. Curr
 - `float`: Float
     - If `prop.min` is provided, it will check if the value is greater than or equal to it
     - If `prop.max` is provided, it will check if the value is less than or equal to it
+- `enum`: Enumerate
+    - `prop.options`: An array of strings, each representing an option for display, defaulting to `["A", "B", "C"]`
+    - By clicking the menu item, the user can cycle through the options
+    - Note that `prop.options` is only from the user's perspective, and the value actually used is the **index** of the option (cycles from 0 to `prop.options.length - 1`)
+    - You should assign a valid non-negative integer less than `prop.options.length` to `prop.value`, defaulting to `0` if not specified
 - `action`: Calls function(s) when clicked
     - You should not override `prop.input` and `prop.processor` for this type
     - Listen for this property's `get` events using `config.addEventListener` to set up callback(s)
@@ -265,6 +270,7 @@ Built-in processors:
 - `float`: Convert to float in given range (if specified)
     - If `prop.min` is provided, it will check if the value is greater than or equal to it
     - If `prop.max` is provided, it will check if the value is less than or equal to it
+- `enum`: Adds $1$ to the input and mods `prop.options.length` (Used internally by `enum` type)
 
 #### `prop.formatter`
 
@@ -281,7 +287,8 @@ Arguments of the function:
 Built-in formatters:
 
 - `normal`: Display in the format of `name: value`
-- `boolean`: Display method aimed for boolean values. `true` will be displayed as `name: ✔`, `false` will be displayed as `name: ✘`.
+- `boolean`: Display method for boolean values - `true` will be displayed as `name: ✔`, `false` will be displayed as `name: ✘`.
+- `enum`: Display in the format of `name: option`, where `option` is `prop.options[value]` (Used internally by `enum` type)
 - `name_only`: Only show the name of the config item (Used internally by `action` type)
 - `folder`: Wrap the name with `prop.folderDisplay.prefix` and `prop.folderDisplay.suffix`. (Used internally by `folder` type)
 

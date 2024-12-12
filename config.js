@@ -49,6 +49,9 @@ class GM_config extends EventTarget {
             if (max !== NaN && value > max) throw `Invalid value: ${s}, expected float <= ${max}!`;
             return value;
         },
+        enum: (prop, v, desc) => {
+            return (v + 1) % desc.options.length; // Cycle through options
+        },
     };
     /**
      * Built-in formatters for user input
@@ -57,6 +60,7 @@ class GM_config extends EventTarget {
     static #builtinFormatters = {
         normal: (prop, value, desc) => `${desc.name}: ${value}`,
         boolean: (prop, value, desc) => `${desc.name}: ${value ? "✔" : "✘"}`,
+        enum: (prop, value, desc) => `${desc.name}: ${desc.options[value]}`,
         name_only: (prop, value, desc) => desc.name,
         folder: (prop, value, desc) => `${desc.folderDisplay.prefix}${desc.name}${desc.folderDisplay.suffix}`,
     };
@@ -87,6 +91,13 @@ class GM_config extends EventTarget {
             input: "prompt",
             processor: "float",
             formatter: "normal",
+        },
+        enum: { // Enum
+            options: ["A", "B", "C"],
+            value: 0,
+            input: "current",
+            processor: "enum",
+            formatter: "enum",
         },
         action: { // Action
             value: null,

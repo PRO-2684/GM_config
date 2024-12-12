@@ -181,6 +181,11 @@ const configDesc = {
 - `float`：浮点数
     - 若指定 `prop.min`，则检查值是否大于等于 `prop.min`
     - 若指定 `prop.max`，则检查值是否小于等于 `prop.max`
+- `enum`：枚举
+    - `prop.options`：一个字符串数组，代表一系列所展示的可选值，默认为 `["A", "B", "C"]`
+    - 用户可以通过点击菜单项，在选项间循环切换
+    - 值得注意的是，`prop.options` 只是在用户视角下的展示，实际上配置项所使用的值是此数组的 **索引**（从 0 至 `prop.options.length - 1` 循环）
+    - 你应该给 `prop.value` 设置一个小于 `prop.options.length` 的非负整数，若未指定则默认为 `0`
 - `action`：点击时调用函数
     - 你不应该覆盖此类型的 `prop.input` 和 `prop.processor` 属性
     - 为实现回调，请使用 `config.addEventListener` 监听此属性的 `get` 事件
@@ -264,6 +269,7 @@ const configDesc = {
 - `float`：转换为在范围内的浮点数（若指定）
     - 若指定 `prop.min`，则检查值是否大于等于 `prop.min`
     - 若指定 `prop.max`，则检查值是否小于等于 `prop.max`
+- `enum`：向输入加 1 并关于 `prop.options.length` 取模（内部用于 `enum` 类型）
 
 #### `prop.formatter`
 
@@ -279,8 +285,9 @@ const configDesc = {
 
 内置展现方式：
 
-- `normal`：`name: value` 的形式
-- `boolean`：针对布尔值的展现方式。`true` 显示为 `name: ✔`，`false` 显示为 `name: ✘`
+- `normal`：以 `name: value` 的形式展现
+- `boolean`：针对布尔值的展现方式 - `true` 显示为 `name: ✔`，`false` 显示为 `name: ✘`
+- `enum`：以 `name: option` 的形式展现，其中 `option` 为 `prop.options[value]`（内部用于 `enum` 类型）
 - `name_only`: 仅显示名称，不显示值（内部用于 `action` 类型）
 - `folder`: 使用 `prop.folderDisplay.prefix` 和 `prop.folderDisplay.suffix` 包裹名称（内部用于 `folder` 类型）
 
