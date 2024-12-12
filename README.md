@@ -239,7 +239,7 @@ Arguments of the function:
 
 - `prop`: The id of the config item
 - `orig`: Current value
-- `desc`: The config description of the config item
+- `desc`: Config description of current config item (`desc.` conveys the same meaning as `prop.`)
 
 Built-in input functions:
 
@@ -258,7 +258,7 @@ Arguments of the function:
 
 - `prop`: The id of the config item
 - `input`: User input
-- `desc`: The config description of the config item
+- `desc`: Config description of current config item
 
 Built-in processors:
 
@@ -282,7 +282,7 @@ Arguments of the function:
 
 - `prop`: The id of the config item
 - `value`: The value of the config item
-- `desc`: The config description of the config item
+- `desc`: Config description of current config item
 
 Built-in formatters:
 

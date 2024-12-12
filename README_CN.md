@@ -238,7 +238,7 @@ const configDesc = {
 
 - `prop`：配置项的 id
 - `orig`：当前值
-- `desc`：配置项的配置描述
+- `desc`：此配置项的配置描述（`desc.` 与 `prop.` 表达的含义相同）
 
 内置输入函数：
 
@@ -257,7 +257,7 @@ const configDesc = {
 
 - `prop`：配置项的 id
 - `input`：用户输入的值
-- `desc`：配置项的配置描述
+- `desc`：此配置项的配置描述
 
 内置处理器：
 
@@ -281,7 +281,7 @@ const configDesc = {
 
 - `prop`：配置项的 id
 - `value`：配置项的值
-- `desc`：配置项的配置描述
+- `desc`：此配置项的配置描述
 
 内置展现方式：
 
