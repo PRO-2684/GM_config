@@ -57,7 +57,9 @@ GitHub Release (Minified) is the recommended source. Take that for example, you 
 // @require      https://github.com/PRO-2684/GM_config/releases/download/<version>/config.min.js
 ```
 
-Where `<version>` is the version you want to include (like `v1.2.0`). If only for testing, you can `@require` the [latest version](https://github.com/PRO-2684/GM_config/releases/latest/download/config.min.js).
+Where `<version>` is the version you want to include (like `v1.2.0`). If only for testing, you can directly `@require` the [latest version](https://github.com/PRO-2684/GM_config/releases/latest/download/config.min.js).
+
+If your script is to be posted to GreasyFork, you may need to add **Subresource Integrity** checks. Simply append `#md5=<md5>` after the `@require`d URL, where `<md5>` is the MD5 hash of the file. You can find the calculated hash at individual release pages.
 
 ## 🚀 Quick start
 

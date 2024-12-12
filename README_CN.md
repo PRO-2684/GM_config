@@ -57,7 +57,9 @@ GitHub Release (Minified) 是最推荐的源。以此为例，你可以像这样
 // @require      https://github.com/PRO-2684/GM_config/releases/download/<version>/config.min.js
 ```
 
-其中 `<version>` 是你想要使用的版本 (例如 `v1.2.0`)。若只作测试用，你也可以 `@require` [最新版](https://github.com/PRO-2684/GM_config/releases/latest/download/config.min.js)。
+其中 `<version>` 是你想要使用的版本 (例如 `v1.2.0`)。若只作测试用，你也可以直接 `@require` [最新版](https://github.com/PRO-2684/GM_config/releases/latest/download/config.min.js)。
+
+若你想将脚本发布到 GreasyFork，你可能需要添加 **子资源完整性** 检查。只需在 `@require` 的 URL 后添加 `#md5=<md5>`，其中 `<md5>` 是文件的 MD5 哈希值。你可以在发布页面找到计算的哈希值。
 
 ## 🚀 快速开始
 

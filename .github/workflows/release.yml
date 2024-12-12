@@ -24,13 +24,13 @@ jobs:
           cache-dependency-path: "package-lock.json"
       # Install dependencies (including devDependencies)
       - run: "npm install"
-      # Minify config.js
-      - run: "node ./scripts/minify.js"
+      # Minify config.js and generate release notes
+      - run: "node ./scripts/prepare-release.js"
       # Create a release
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: "softprops/action-gh-release@v2"
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
+          body_path: "RELEASE-NOTES.md"
+          append_body: true
           files: |
             config.js
             config.min.js
