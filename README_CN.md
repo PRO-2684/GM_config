@@ -292,7 +292,7 @@ const configDesc = {
 
 #### 其它 Tampermonkey 提供的属性
 
-支持 `prop.accessKey`, `prop.autoClose`, `prop.title` (要求 TM >=4.20.0)。如果提供的是一个函数，那么它将被调用，传入参数为 `name` 和 `value`，返回的字符串将被传递给 Tampermonkey。详细信息请参考 [Tampermonkey 文档](https://www.tampermonkey.net/documentation.php#api:GM_registerMenuCommand)。
+支持 `prop.accessKey`, `prop.autoClose`, `prop.title` (要求 TM >=4.20.0)。如果提供的是一个函数，那么它将被调用，传入参数为 `prop`, `value` 和 `desc`，就像自定义 `prop.formatter` 一样。它的返回值将被传递给 Tampermonkey。详细信息请参考 [Tampermonkey 文档](https://www.tampermonkey.net/documentation.php#api:GM_registerMenuCommand)。
 
 #### 优先级
 

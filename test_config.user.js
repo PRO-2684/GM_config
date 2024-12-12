@@ -25,7 +25,7 @@
         },
         enabled: {
             name: "Enabled",
-            title: (prop, name, value) => value ? "Disable some feature" : "Enable some feature",
+            title: (prop, value, desc) => value ? "Disable some feature" : "Enable some feature",
             value: true,
             // The following can be replaced by `type: "bool"`
             input: "current",

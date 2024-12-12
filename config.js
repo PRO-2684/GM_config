@@ -517,14 +517,14 @@ class GM_config extends EventTarget {
             this.#log(`○ Skipped registering menu command: prop="${prop}" (hidden)`);
             return;
         }
-        const { name, value, input, processor, formatter, accessKey, autoClose, title } = desc;
+        const { value, input, processor, formatter, accessKey, autoClose, title } = desc;
         const orig = this.#get(prop, value);
         const inputFunc = typeof input === "function" ? input : this.#builtinInputs[input];
         const formatterFunc = typeof formatter === "function" ? formatter : GM_config.#builtinFormatters[formatter];
         const option = {
-            accessKey: GM_config.#call(accessKey, prop, name, orig),
-            autoClose: GM_config.#call(autoClose, prop, name, orig),
-            title: GM_config.#call(title, prop, name, orig),
+            accessKey: GM_config.#call(accessKey, prop, orig, desc),
+            autoClose: GM_config.#call(autoClose, prop, orig, desc),
+            title: GM_config.#call(title, prop, orig, desc),
             id: this.#registered[prop],
         };
         const id = GM_registerMenuCommand(formatterFunc(prop, orig, desc), () => {
