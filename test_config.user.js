@@ -53,6 +53,11 @@
                     name: "Any float",
                     type: "float"
                 },
+                enum: {
+                    name: "Enum",
+                    type: "enum",
+                    options: ["A", "B", "C", "D", "E"]
+                },
                 val: {
                     name: "Positive float",
                     value: 11.4,
