@@ -382,7 +382,7 @@ config.addEventListener("get", (e) => {
 - `get` 事件仅在当前脚本实例获取配置时触发
 - `set` 事件会在 *任意来源* 修改配置时触发，而这使得多标签页同步成为可能
 
-正如你所想，你可以通过 `config.removeEventListener(type, listener, options?)` 来移除监听器。这两个接口与 [`EventTarget.addEventListener`](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener) 和 [`EventTarget.removeEventListener`](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/removeEventListener) 的用法完全一致。
+正如你所想，你可以通过 `config.removeEventListener(type, listener, options?)` 来移除监听器。这两个接口就是从 [`EventTarget.addEventListener`](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener) 和 [`EventTarget.removeEventListener`](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/removeEventListener) 继承而来的。
 
 这个功能常用于在配置变化时实时更新脚本的功能。在库内部，自动更新菜单项的功能就是通过这个功能来实现的。
 

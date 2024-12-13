@@ -383,7 +383,7 @@ It should be noted that:
 - `get` event is only triggered when the config is accessed by current script instance
 - `set` event is triggered when the config is modified from *any sources*, making multi-tab synchronization possible
 
-As you might have expected, you can remove the listener by calling `config.removeEventListener(type, listener, options?)`. These two methods are identical to [`EventTarget.addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`EventTarget.removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener).
+As you might have expected, you can remove the listener by calling `config.removeEventListener(type, listener, options?)`. These two methods are inherited from [`EventTarget.addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`EventTarget.removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener).
 
 This feature is often used to update your script dynamically when config is modified. In this lib, auto-updating menu is implemented by this feature.
 
