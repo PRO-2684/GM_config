@@ -4,8 +4,8 @@
 // @license      gpl-3.0
 // @namespace    http://tampermonkey.net/
 // @version      1.2.1
-// @description  Simple Tampermonkey script config library
-// @description:zh-CN  简易的 Tampermonkey 脚本配置库
+// @description  Simple yet powerful config lib for userscripts
+// @description:zh-CN  简单而又强大的用户脚本配置库
 // @author       PRO
 // @match        *
 // @grant        GM_setValue
@@ -197,52 +197,8 @@ class GM_config extends EventTarget {
      */
     constructor(desc, options = {}) { // Register menu items based on given config description
         super();
-        // Handle value change events
-        /**
-         * Handle value change events
-         * @param {string} prop The dotted property name
-         * @param {any} before The value before the change
-         * @param {any} after The value after the change
-         * @param {boolean} remote Whether the change is remote
-         */
-        function onValueChange(prop, before, after, remote) {
-            const defaultValue = this.#getProp(prop).value;
-            // If `before` or `after` is `undefined`, replace it with default value
-            if (before === undefined) before = defaultValue;
-            if (after === undefined) after = defaultValue;
-            // Update cache, if present (so as not to cache config values that are not accessed)
-            if (prop in this.#configCache) {
-                this.#configCache[prop] = after;
-            }
-            // Dispatch set event
-            this.#dispatch(true, { prop, before, after, remote });
-        }
-        /**
-         * Assigns values from source objects to target object (considering that `folderDisplay` is a shallow object)
-         */
-        function assign(obj, ...sources) {
-            // Merge `folderDisplay` objects
-            const folderDisplay = Object.assign(obj.folderDisplay ?? {}, ...sources.map(s => s.folderDisplay ?? {}));
-            // Assign other properties
-            return Object.assign(obj, ...sources, { folderDisplay });
-        }
-        // Complete desc & setup value change listeners
-        function initDesc(desc, path = [], parentDefault = {}) {
-            // Calc true default value for current level
-            const $default = assign({}, parentDefault, desc.$default ?? {});
-            delete desc.$default;
-            for (const prop in desc) {
-                const fullPath = [...path, prop];
-                desc[prop] = assign({}, $default, GM_config.#builtinTypes[desc[prop].type] ?? {}, desc[prop]);
-                if (desc[prop].type === "folder") {
-                    initDesc.call(this, desc[prop].items, fullPath, $default);
-                } else {
-                    GM_addValueChangeListener(GM_config.#listToDotted(fullPath), onValueChange.bind(this));
-                }
-            }
-        }
         this.#desc = desc;
-        initDesc.call(this, this.#desc, [], {
+        this.#initDesc(this.#desc, [], {
             input: "prompt",
             processor: "same",
             formatter: "normal",
@@ -489,18 +445,24 @@ class GM_config extends EventTarget {
         return this.dispatchEvent(event);
     }
     /**
-     * Register menu items at the current path
+     * Unregister all menu items
      */
-    #register() {
-        this.#currentDescCache = null; // Clear cache
-        const currentDesc = this.#getProp(this.#currentPath);
-        // Unregister old menu items
+    #unregister() {
         for (const prop in this.#registered) {
             const id = this.#registered[prop];
             GM_unregisterMenuCommand(id);
             delete this.#registered[prop];
             this.#log(`- Unregistered menu command: prop="${prop}", id=${id}`);
         }
+    }
+    /**
+     * Register menu items at the current path
+     */
+    #register() {
+        this.#currentDescCache = null; // Clear cache
+        const currentDesc = this.#getProp(this.#currentPath);
+        // Unregister old menu items
+        this.#unregister();
         // Register parent menu item (if not at root)
         if (this.#currentPath.length) {
             const id = GM_registerMenuCommand(currentDesc.folderDisplay.parentText, () => {
@@ -563,5 +525,53 @@ class GM_config extends EventTarget {
         }, option);
         this.#log(`+ Registered menu command: prop="${prop}", id=${id}, option=`, option);
         return id;
+    }
+    /**
+     * Handle value change events
+     * @param {string} prop The dotted property name
+     * @param {any} before The value before the change
+     * @param {any} after The value after the change
+     * @param {boolean} remote Whether the change is remote
+     */
+    #onValueChange(prop, before, after, remote) {
+        const defaultValue = this.#getProp(prop).value;
+        // If `before` or `after` is `undefined`, replace it with default value
+        if (before === undefined) before = defaultValue;
+        if (after === undefined) after = defaultValue;
+        // Update cache, if present (so as not to cache config values that are not accessed)
+        if (prop in this.#configCache) {
+            this.#configCache[prop] = after;
+        }
+        // Dispatch set event
+        this.#dispatch(true, { prop, before, after, remote });
+    }
+    /**
+     * Initialize the config description object in place and setup value change listeners recursively
+     * @param {Object} desc The config description object
+     * @param {string[]} [path] The current path
+     * @param {Object} [parentDefault] The default values of the parent
+     */
+    #initDesc(desc, path = [], parentDefault = {}) {
+        /**
+         * Assigns values from source objects to target object (considering that `folderDisplay` is a shallow object)
+         */
+        function assign(obj, ...sources) {
+            // Merge `folderDisplay` objects
+            const folderDisplay = Object.assign(obj.folderDisplay ?? {}, ...sources.map(s => s.folderDisplay ?? {}));
+            // Assign other properties
+            return Object.assign(obj, ...sources, { folderDisplay });
+        }
+        // Calc true default value for current level
+        const $default = assign({}, parentDefault, desc.$default ?? {});
+        delete desc.$default;
+        for (const prop in desc) {
+            const fullPath = [...path, prop];
+            desc[prop] = assign({}, $default, GM_config.#builtinTypes[desc[prop].type] ?? {}, desc[prop]);
+            if (desc[prop].type === "folder") {
+                this.#initDesc(desc[prop].items, fullPath, $default);
+            } else {
+                GM_addValueChangeListener(GM_config.#listToDotted(fullPath), this.#onValueChange.bind(this));
+            }
+        }
     }
 }
