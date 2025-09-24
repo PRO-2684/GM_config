@@ -4,11 +4,13 @@
 
 [![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/PRO-2684/GM_config/total?logo=github)](https://github.com/PRO-2684/GM_config/releases)
 [![](https://img.shields.io/badge/Crazy%20Thur.-V%20me%2050-red?logo=kfc)](https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaWZvIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--10e04ed7ed56ae18d22cec6d675b34fd579cecab/wechat.jpeg?locale=zh-CN)
+[![GM_config Badge](https://img.shields.io/badge/%E2%9A%99%EF%B8%8F-GM__config-blue)](https://github.com/PRO-2684/GM_config/)
 
-简单而又强大的用户脚本配置库。 ([Greasy Fork](https://greasyfork.org/scripts/470224)) ([GitHub](https://github.com/PRO-2684/GM_config))
+简单而又强大的用户脚本配置库。 ([GitHub](https://github.com/PRO-2684/GM_config) | [Greasy Fork](https://greasyfork.org/scripts/470224))
 
 ## 🎉 特性
 
+- 利用了用户脚本管理器所提供的 **配置菜单**
 - 配置修改后 **自动更新菜单**（无论由用户或脚本修改）
 - 支持 **监听配置获取/修改事件**
 - 支持 **多标签页同步**
@@ -59,7 +61,7 @@ GitHub Release (Minified) 是最推荐的源。以此为例，你可以像这样
 
 其中 `<version>` 是你想要使用的版本 (例如 `v1.2.0`)。若只作测试用，你也可以直接 `@require` [最新版](https://github.com/PRO-2684/GM_config/releases/latest/download/config.min.js)。
 
-若你想将脚本发布到 GreasyFork，你可能需要添加 **子资源完整性** 检查。只需在 `@require` 的 URL 后添加 `#md5=<md5>`，其中 `<md5>` 是文件的 MD5 哈希值。你可以在发布页面找到计算的哈希值。
+若你想将脚本发布到 GreasyFork 等网站，你可能需要添加 [**子资源完整性** 检查](https://www.tampermonkey.net/documentation.php#api:Subresource_Integrity)。只需在 `@require` 的 URL 后添加 `#md5=<md5>`，其中 `<md5>` 是文件的 MD5 哈希值。你可以在发布页面找到计算的哈希值。
 
 ## 🚀 快速开始
 
@@ -76,7 +78,7 @@ const configDesc = {
         name: "Name",
         type: "str",
         value: "John Doe"
-    }
+    },
 };
 ```
 

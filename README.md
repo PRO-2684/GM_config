@@ -4,11 +4,13 @@ English | [简体中文](./README_CN.md)
 
 [![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/PRO-2684/GM_config/total?logo=github)](https://github.com/PRO-2684/GM_config/releases)
 [![](https://img.shields.io/badge/Crazy%20Thur.-V%20me%2050-red?logo=kfc)](https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaWZvIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--10e04ed7ed56ae18d22cec6d675b34fd579cecab/wechat.jpeg?locale=zh-CN)
+[![GM_config Badge](https://img.shields.io/badge/%E2%9A%99%EF%B8%8F-GM__config-blue)](https://github.com/PRO-2684/GM_config/)
 
-Simple yet powerful config lib for userscripts. ([Greasy Fork](https://greasyfork.org/scripts/470224)) ([GitHub](https://github.com/PRO-2684/GM_config))
+Simple yet powerful config lib for UserScripts. ([GitHub](https://github.com/PRO-2684/GM_config) | [Greasy Fork](https://greasyfork.org/scripts/470224))
 
 ## 🎉 Features
 
+- Utilizes config menu provided by UserScript managers
 - **Automatically update the menu** when config is modified (by either user or script)
 - Support **listeners for config get/set**
 - Support **multi-tab synchronization**
@@ -59,7 +61,7 @@ GitHub Release (Minified) is the recommended source. Take that for example, you 
 
 Where `<version>` is the version you want to include (like `v1.2.0`). If only for testing, you can directly `@require` the [latest version](https://github.com/PRO-2684/GM_config/releases/latest/download/config.min.js).
 
-If your script is to be posted to GreasyFork, you may need to add **Subresource Integrity** checks. Simply append `#md5=<md5>` after the `@require`d URL, where `<md5>` is the MD5 hash of the file. You can find the calculated hash at individual release pages.
+If your script is to be posted to sites like GreasyFork, you may need to add [**Subresource Integrity** checks](https://www.tampermonkey.net/documentation.php#api:Subresource_Integrity). Simply append `#md5=<md5>` after the `@require`d URL, where `<md5>` is the MD5 hash of the file. You can find the calculated hash at individual release pages.
 
 ## 🚀 Quick start
 
@@ -76,7 +78,7 @@ const configDesc = {
         name: "Name",
         type: "str",
         value: "John Doe"
-    }
+    },
 };
 ```
 
@@ -114,7 +116,7 @@ config.addEventListener("set", (e) => {
 });
 ```
 
-Now that you've successfully set up a simple config menu for your script, it's time to dive deeper into the [documentation](#documentation) to explore more advanced features.
+Now that you've successfully set up a simple config menu for your script, it's time to dive deeper into the [documentation](#-documentation) to explore more advanced features.
 
 ## 📖 Documentation
 
