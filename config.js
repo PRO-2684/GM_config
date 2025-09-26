@@ -22,7 +22,7 @@ class GM_config extends EventTarget {
      * @type {string}
      */
     static get version() {
-        return "1.2.1";
+        return "1.2.2";
     }
     /**
      * Built-in processors for user input
