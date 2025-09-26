@@ -3,7 +3,7 @@
 // @name:zh-CN   Tampermonkey 配置
 // @license      gpl-3.0
 // @namespace    http://tampermonkey.net/
-// @version      1.2.1
+// @version      1.2.2
 // @description  Simple yet powerful config lib for userscripts
 // @description:zh-CN  简单而又强大的用户脚本配置库
 // @author       PRO
@@ -65,9 +65,9 @@ class GM_config extends EventTarget {
         folder: (prop, value, desc) => `${desc.folderDisplay.prefix}${desc.name}${desc.folderDisplay.suffix}`,
     };
     /**
-     * The built-in types
+     * The available types
      */
-    static #builtinTypes = {
+    static #types = {
         str: { // String
             value: "",
             input: "prompt",
@@ -310,6 +310,19 @@ class GM_config extends EventTarget {
      */
     static #normalizeProp(prop) {
         return GM_config.#listToDotted(GM_config.#dottedToList(prop));
+    }
+    /**
+     * Extend the type system with a new type
+     * @param {string} typeName The name of the type to be extended
+     * @param {Object} typeDesc The default description of the type
+     * @returns {boolean} Whether the operation is successful
+     */
+    static extend(typeName, typeDesc) {
+        if (typeName in GM_config.#types) {
+            return false; // Type already exists
+        }
+        GM_config.#types[typeName] = typeDesc;
+        return true; // Success
     }
     /**
      * Get the value of a property
@@ -566,7 +579,7 @@ class GM_config extends EventTarget {
         delete desc.$default;
         for (const prop in desc) {
             const fullPath = [...path, prop];
-            desc[prop] = assign({}, $default, GM_config.#builtinTypes[desc[prop].type] ?? {}, desc[prop]);
+            desc[prop] = assign({}, $default, GM_config.#types[desc[prop].type] ?? {}, desc[prop]);
             if (desc[prop].type === "folder") {
                 this.#initDesc(desc[prop].items, fullPath, $default);
             } else {

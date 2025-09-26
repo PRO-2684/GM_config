@@ -225,6 +225,19 @@ const configDesc = {
 }
 ```
 
+You can also extend the type system with `GM_config.extend(typeName, typeDesc)`:
+
+```javascript
+GM_config.extend("password", {
+    value: "",
+    input: "prompt",
+    processor: "same",
+    formatter: (_prop, value, _desc) => `${desc.name}: ${"*".repeat(value.length)}`, // Hide the actual value
+});
+```
+
+This type would hide your password on the menu.
+
 #### `prop.name`
 
 The display name of the config item. Expected type: `string`.

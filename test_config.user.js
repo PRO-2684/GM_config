@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Test Config
 // @namespace    http://tampermonkey.net/
-// @version      1.2.1
+// @version      1.2.2
 // @description  This is an example to demostrate the usage of [GM_config](greasyfork.org/scripts/470224)
 // @author       PRO
 // @match        https://greasyfork.org/*
@@ -19,6 +19,12 @@
 
 (function() {
     'use strict';
+    GM_config.extend("password", { // Extend the type system with a new type "password"
+        value: "",
+        input: "prompt",
+        processor: "same",
+        formatter: (_prop, value, desc) => `${desc.name}: ${"*".repeat(value.length)}`, // Hide the actual value
+    });
     const configDesc = { // Config description
         $default: {
             autoClose: false
@@ -115,9 +121,10 @@
         },
         password: {
             name: "Password", // Display name
+            type: "password", // Use the extended type
             value: "tmp", // Default value
             input: "prompt", // How to get user input (Invoked when user clicks the menu command)
-            processor: (prop, input, desc) => {
+            processor: (prop, input, desc) => { // This password must be at least 3 characters
                 if (input.length < 3) throw "Too short!";
                 return input;
             }
