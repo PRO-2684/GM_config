@@ -43,9 +43,9 @@
 
 | Source         | Original | Minified |
 | -------------- | -------- | -------- |
-| [GitHub Release](https://github.com/PRO-2684/GM_config/releases) | 🟢      | 🟢       |
-| [GitHub Raw](https://github.com/PRO-2684/GM_config/blob/main/config.js)     | 🟢      | 🔴       |
-| [GreasyFork](https://greasyfork.org/scripts/470224)     | 🔴      | <span title="每天检查一次更新">🟡*</span>      |
+| [GitHub Release](https://github.com/PRO-2684/GM_config/releases) | 🟢      | 🟢 |
+| [GitHub Raw](https://github.com/PRO-2684/GM_config/blob/main/config.js)     | 🟢 | 🔴 |
+| [GreasyFork](https://greasyfork.org/scripts/470224)     | <span title="每天检查一次更新">🟡*</span> | 🔴 |
 
 GitHub Release (Minified) 是最推荐的源。以此为例，你可以像这样将此库包含在你的脚本中：
 
