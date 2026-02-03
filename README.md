@@ -43,9 +43,9 @@ To include this library in your script, you can choose one of the following meth
 
 | Source         | Original | Minified |
 | -------------- | -------- | -------- |
-| [GitHub Release](https://github.com/PRO-2684/GM_config/releases) | 🟢      | 🟢       |
-| [GitHub Raw](https://github.com/PRO-2684/GM_config/blob/main/config.js)     | 🟢      | 🔴       |
-| [GreasyFork](https://greasyfork.org/scripts/470224)     | 🔴      | <span title="Update check once a day">🟡*</span>      |
+| [GitHub Release](https://github.com/PRO-2684/GM_config/releases) | 🟢 | 🟢 |
+| [GitHub Raw](https://github.com/PRO-2684/GM_config/blob/main/config.js)     | 🟢 | 🔴 |
+| [GreasyFork](https://greasyfork.org/scripts/470224)     | <span title="Update check once a day">🟡*</span> | 🔴 |
 
 GitHub Release (Minified) is the recommended source. Take that for example, you can include it in your script like this:
 
